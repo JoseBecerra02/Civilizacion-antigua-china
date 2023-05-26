@@ -14,6 +14,7 @@ export default function Experience() {
     left: false,
     right: false,
   });
+  const velocidad = 0.5
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -44,10 +45,14 @@ export default function Experience() {
   useFrame(() => {
     const { forward, backward, left, right } = movement;
 
-    if (forward) camera.translateZ(-0.1);
-    if (backward) camera.translateZ(0.1);
-    if (left) camera.translateX(-0.1);
-    if (right) camera.translateX(0.1);
+    if (forward) controlsRef.current.moveForward(velocidad);
+    if (backward) controlsRef.current.moveForward(-velocidad);
+    if (left) controlsRef.current.moveRight(-velocidad);
+    if (right) controlsRef.current.moveRight(velocidad);
+    // if (forward) camera.translateZ(-0.1);
+    // if (backward) camera.translateZ(0.1);
+    // if (left) camera.translateX(-0.1);
+    // if (right) camera.translateX(0.1);
   });
 
   return (
